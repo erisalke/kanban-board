@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { executeApiCall } from '../actions/api';
+import { fetchTasks, fetchTaskLists } from '../actions/api';
 
 
 const Home = React.createClass({
   render: function() {
     return (
       <div className="home-page">
+
         <h1>hello world</h1>
 
         <div>
-          <button onClick={ this.props.executeApiCall } >Button</button>
+          Hey hello
         </div>
 
         <div>
-          Hey hello
+          <button onClick={ this.props.fetchTaskLists } >Get all lists</button>
+          <button onClick={ this.props.fetchTasks } >Get all tasks</button>
         </div>
 
       </div>
@@ -24,9 +26,12 @@ const Home = React.createClass({
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-		executeApiCall : () => {
-			dispatch(executeApiCall())
-		}
+    fetchTasks : () => {
+			dispatch(fetchTasks())
+		},
+    fetchTaskLists : () => {
+			dispatch(fetchTaskLists())
+		},
 	}
 }
 

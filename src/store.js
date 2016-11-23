@@ -3,8 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import root from './reducers/root-reducer';
 import thunk from 'redux-thunk'
 
+
 let store = createStore(
-	root,
+	combineReducers({root}),
 	composeWithDevTools(
     applyMiddleware(thunk)
 	)
