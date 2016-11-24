@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTasks, fetchTaskLists } from '../../actions/api';
-
 import { Checkbox } from 'react-bootstrap';
 
 const TaskCard = React.createClass({

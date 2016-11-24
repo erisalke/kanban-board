@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTasks, fetchTaskLists } from '../../actions/api';
 import TaskCard from './task-card'
 
 const TaskList = React.createClass({
@@ -14,11 +13,11 @@ const TaskList = React.createClass({
 
           <div className="panel-body">
               {
-                this.props.tasks.map( (task, i) => {
-                    return (
-                        <TaskCard key={i} props={task} />
-                    )
-                })
+                  this.props.isFetching
+                    ? <div>loading...</div>
+                    : this.props.tasks.map( (task, i) => {
+                          return <TaskCard key={i} props={task} />
+                        })
               }
 
           </div>
@@ -34,7 +33,8 @@ const TaskList = React.createClass({
 function mapStateToProps(state, ownProps) {
   return {
     list: ownProps.props,
-    tasks: state.tasks.filter( task => task.task_list_id === ownProps.props.id )
+    tasks: state.tasks.items.filter( task => task.task_list_id === ownProps.props.id ),
+    isFetching: state.tasks.isFetching,
 	}
 }
 

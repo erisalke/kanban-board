@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTasks, fetchTaskLists } from '../actions/api';
+import { fetchTaskLists } from '../actions/tasklists-actions';
+import { fetchTasks } from '../actions/tasks-actions';
 import KanbanBoard from './elements/kanban-board';
 
 const Home = React.createClass({
