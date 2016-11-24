@@ -1,18 +1,7 @@
 import * as types from '../actions/action-types';
+import { combineReducers } from 'redux';
 
-const root = (state = {}, action) => {
- 	switch (action.type) {
- 		case 'RECEIVE_TASKS': {
-      return Object.assign({}, state, {tasks: action.data})
-    }
+import taskLists from './task-lists';
+import tasks from './tasks';
 
-    case 'RECEIVE_TASK_LISTS': {
-      return Object.assign({}, state, {lists: action.data})
-    }
-
- 		default:
- 			return state;
- 	}
-};
-
-export default root;
+export default combineReducers({ taskLists, tasks })

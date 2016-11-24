@@ -5,7 +5,7 @@ import thunk from 'redux-thunk'
 
 
 let store = createStore(
-	combineReducers({root}),
+	root,
 	composeWithDevTools(
     applyMiddleware(thunk)
 	)
