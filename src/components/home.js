@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTasks, fetchTaskLists } from '../actions/api';
-
+import KanbanBoard from './elements/kanban-board';
 
 const Home = React.createClass({
   render: function() {
@@ -18,6 +18,8 @@ const Home = React.createClass({
           <button onClick={ this.props.fetchTaskLists } >Get all lists</button>
           <button onClick={ this.props.fetchTasks } >Get all tasks</button>
         </div>
+
+        <KanbanBoard />
 
       </div>
     );
