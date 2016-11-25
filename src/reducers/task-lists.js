@@ -1,8 +1,6 @@
-import * as types from '../actions/action-types';
 import {
   REQUEST_TASK_LISTS, RECEIVE_TASK_LISTS
 } from '../actions/tasklists-actions';
-
 
 const taskLists = (state = { items: [] }, action) => {
  	switch (action.type) {

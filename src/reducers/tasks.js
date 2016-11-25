@@ -1,4 +1,3 @@
-import * as types from '../actions/action-types';
 import {
   REQUEST_TASKS, RECEIVE_TASKS
 } from '../actions/tasks-actions';
