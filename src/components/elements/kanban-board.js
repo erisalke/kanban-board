@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskList from './task-list';
+import { fetchTaskLists } from '../../actions/task-lists-actions';
+
 
 const KanbanBoard = React.createClass({
+  componentDidMount: function() {
+    this.props.fetchTaskLists()
+  },
+
   render: function() {
     return (
       <div className="row">
@@ -18,6 +24,14 @@ const KanbanBoard = React.createClass({
   }
 });
 
+function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    fetchTaskLists : () => {
+      dispatch(fetchTaskLists())
+    },
+  }
+}
+
 function mapStateToProps(state, ownProps) {
   return {
     taskLists: state.taskLists.items,
@@ -25,4 +39,4 @@ function mapStateToProps(state, ownProps) {
 	}
 }
 
-export default connect(mapStateToProps)(KanbanBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(KanbanBoard);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTaskLists } from '../actions/tasklists-actions';
+import { fetchTaskLists } from '../actions/task-lists-actions';
 import { fetchTasks } from '../actions/tasks-actions';
 import KanbanBoard from './elements/kanban-board';
 

@@ -1,6 +1,6 @@
 import {
   REQUEST_TASK_LISTS, RECEIVE_TASK_LISTS
-} from '../actions/tasklists-actions';
+} from '../actions/task-lists-actions';
 
 const taskLists = (state = { items: [] }, action) => {
  	switch (action.type) {
@@ -22,6 +22,7 @@ const taskLists = (state = { items: [] }, action) => {
         }
       );
     }
+
 
  		default:
  			return state;

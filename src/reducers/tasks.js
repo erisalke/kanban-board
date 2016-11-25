@@ -2,10 +2,11 @@ import {
   REQUEST_TASKS, RECEIVE_TASKS
 } from '../actions/tasks-actions';
 
-const tasks = (state = { items: [] }, action) => {
+const tasks = (state = { items: {} }, action) => {
  	switch (action.type) {
     case REQUEST_TASKS: {
-      return Object.assign({},
+      return Object.assign(
+        {},
         state,
         {
           isFetching: true,
@@ -14,10 +15,20 @@ const tasks = (state = { items: [] }, action) => {
     }
 
     case RECEIVE_TASKS: {
+      console.log("#",action);
+      const newItems =
+        action.data.reduce( (res, task) => {
+          if (!res.hasOwnProperty(task.task_list_id)){
+            res[task.task_list_id] = [];
+          }
+          res[task.task_list_id]= [task, ...res[task.task_list_id]]
+          return res;
+        }, state.items)
+
       return Object.assign({},
         state,
         {
-          items: [...action.data],
+          items: newItems,
           isFetching: false,
         }
       );
