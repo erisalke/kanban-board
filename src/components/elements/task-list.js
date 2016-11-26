@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskCard from './task-card';
-import { fetchTasks } from '../../actions/tasks-actions';
+import { fetchTasks, toggleTask } from '../../actions/tasks-actions';
 
 
 const TaskList = React.createClass({
@@ -13,18 +13,25 @@ const TaskList = React.createClass({
     return (
       <div className="col-md-3">
         <div className="panel panel-default">
+
           <div className="panel-heading">
             <span>{this.props.list.name}</span>
           </div>
 
           <div className="panel-body">
-              {
-                  this.props.isFetching || !this.props.tasks
-                    ? <div>loading...</div>
-                    : this.props.tasks.map( (task, i) => {
-                        return <TaskCard key={i} props={task} />
-                      })
-              }
+            {
+              this.props.isFetching || !this.props.tasks
+                ? <div>loading...</div>
+                : this.props.tasks.map( (task, i) => {
+                    return (
+                      <TaskCard
+                        key={i}
+                        props={task}
+                        toggleTask={ this.props.toggleTask }
+                        />
+                      )
+                  })
+            }
           </div>
 
         </div>
@@ -48,6 +55,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     fetchTasks : (listId) => {
       dispatch(fetchTasks(listId))
     },
+    toggleTask : (id, status) => {
+      dispatch(toggleTask(id, status))
+    }
   }
 }
 

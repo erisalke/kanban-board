@@ -15,7 +15,6 @@ const tasks = (state = { items: {} }, action) => {
     }
 
     case RECEIVE_TASKS: {
-      console.log("#",action);
       const newItems =
         action.data.reduce( (res, task) => {
           if (!res.hasOwnProperty(task.task_list_id)){
