@@ -12,8 +12,7 @@ const TaskCard = React.createClass({
               <div className="row">
                 <div className="col-xs-2">
                   <Checkbox
-                    onChange={ () =>
-                      this.props.toggleTask(this.props.task.id, "resolved") }/>
+                    onChange={ this.props.toggleTask() }/>
                 </div>
                 <div className="col-xs-10">
                   { this.props.task.name }

@@ -25,9 +25,9 @@ const TaskList = React.createClass({
                 : this.props.tasks.map( (task, i) => {
                     return (
                       <TaskCard
-                        key={i}
-                        props={task}
-                        toggleTask={ this.props.toggleTask }
+                          key={i}
+                          props={task}
+                          toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
                         />
                       )
                   })

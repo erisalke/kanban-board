@@ -24,13 +24,15 @@ export function fetchTasks(listId) {
       );
   }
 }
-// .put(`https://redbooth.com/api/3/tasks/${id}?status=${status}&access_token=${token}`)
-export function toggleTask(id, status) {
-  // const status = "resolved"
+
+export function toggleTask(id, currentStatus) {
   // status: new, open, hold, resolved or rejected.
+  const newStatus = currentStatus !== "resolved"
+                      ? "resolved"
+                      : "open";
   return dispatch => {
     return axios
-      .put(`https://redbooth.com/api/3/tasks/${id}?status=${status}&access_token=${token}`)
+      .put(`https://redbooth.com/api/3/tasks/${id}?status=${currentStatus}&access_token=${token}`)
       .then(
         response => {
           // console.log("!@#",response.data);
