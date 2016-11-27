@@ -27,6 +27,7 @@
   "homepage": "https://github.com/erisalke/kanban-board#readme",
   "devDependencies": {
     "babel-register": "^6.16.3",
+    "chai": "^3.5.0",
     "css-loader": "^0.25.0",
     "redux": "^3.6.0",
     "style-loader": "^0.13.1",
