@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TaskCard from './task-card';
-import { fetchTasks, toggleTask } from '../../actions/tasks-actions';
+import Task from './task';
+import { fetchTasks, toggleTask } from '../../actions/task-actions';
 
 
 const TaskList = React.createClass({
@@ -24,7 +24,7 @@ const TaskList = React.createClass({
                 ? <div>loading...</div>
                 : this.props.tasks.map( (task, i) => {
                     return (
-                      <TaskCard
+                      <Task
                           key={i}
                           props={task}
                           toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}

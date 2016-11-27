@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
 
-const TaskCard = React.createClass({
+const Task = React.createClass({
   render: function() {
     return (
       <div className="row">
@@ -37,4 +37,4 @@ function mapStateToProps(state, ownProps) {
 	}
 }
 
-export default connect(mapStateToProps)(TaskCard);
+export default connect(mapStateToProps)(Task);

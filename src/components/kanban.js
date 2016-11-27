@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Home = React.createClass({
+const Kanban = React.createClass({
   render: function() {
     return (
       <div className="home-page">
         <h1>hello kanban</h1>
         <p>
-          lets go!
+          <a href="https://www.youtube.com/watch?v=oHg5SJYRHA0"> Feature </a>
 				</p>
       </div>
     );
   }
 });
 
-export default Home;
+export default Kanban;

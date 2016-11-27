@@ -1,8 +1,8 @@
 import {
   REQUEST_TASKS, RECEIVE_TASKS
-} from '../actions/tasks-actions';
+} from '../actions/task-actions';
 
-const tasks = (state = { items: {} }, action) => {
+const task = (state = { items: {} }, action) => {
  	switch (action.type) {
     case REQUEST_TASKS: {
       return Object.assign(
@@ -38,4 +38,4 @@ const tasks = (state = { items: {} }, action) => {
  	}
 };
 
-export default tasks;
+export default task;

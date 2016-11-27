@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskList from './task-list';
-import { fetchTaskLists } from '../../actions/task-lists-actions';
+import { fetchTaskLists } from '../../actions/task-list-actions';
 
 
-const KanbanBoard = React.createClass({
+const Board = React.createClass({
   componentDidMount: function() {
     this.props.fetchTaskLists()
   },
@@ -39,4 +39,4 @@ function mapStateToProps(state, ownProps) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KanbanBoard);
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

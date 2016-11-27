@@ -1,8 +1,8 @@
 import {
   REQUEST_TASK_LISTS, RECEIVE_TASK_LISTS
-} from '../actions/task-lists-actions';
+} from '../actions/task-list-actions';
 
-const taskLists = (state = { items: [] }, action) => {
+const taskList = (state = { items: [] }, action) => {
  	switch (action.type) {
     case REQUEST_TASK_LISTS: {
       return Object.assign({},
@@ -29,4 +29,4 @@ const taskLists = (state = { items: [] }, action) => {
  	}
 };
 
-export default taskLists;
+export default taskList;
