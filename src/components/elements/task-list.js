@@ -22,7 +22,8 @@ const TaskList = React.createClass({
             {
               this.props.isFetching || !this.props.tasks
                 ? <div>loading...</div>
-                : this.props.tasks.map( (task, i) => {
+                : this.props.tasks.byId.map( (id, i) => {
+                    const task = this.props.tasks.all[id];
                     return (
                       <Task
                           key={i}
@@ -44,8 +45,8 @@ const TaskList = React.createClass({
 
 function mapStateToProps(state, ownProps) {
   return {
-    list: ownProps.props,
-    tasks: state.tasks.items[ownProps.props.id],
+    list: state.taskLists.all[ownProps.props],
+    tasks: state.tasks,//[ownProps.props.id],
     isFetching: state.tasks.isFetching,
 	}
 }

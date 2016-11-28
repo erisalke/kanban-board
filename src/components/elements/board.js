@@ -15,7 +15,7 @@ const Board = React.createClass({
         {
           this.props.isFetching
             ? <div>loading...</div>
-            : this.props.taskLists.map( (taskList, i) => {
+            : this.props.taskLists.byId.map( (taskList, i) => {
                 return <TaskList key={ i } props={taskList}/>
               })
         }
@@ -34,7 +34,7 @@ function mapDispatchToProps(dispatch, ownProps) {
 
 function mapStateToProps(state, ownProps) {
   return {
-    taskLists: state.taskLists.items,
+    taskLists: state.taskLists,
     isFetching: state.taskLists.isFetching,
 	}
 }

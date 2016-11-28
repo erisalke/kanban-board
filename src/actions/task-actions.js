@@ -13,8 +13,12 @@ export function fetchTasks(listId) {
       .get(url)
       .then(
         response => {
-          dispatch(receiveTasks(response.data))
-        }
+          response.data.forEach(
+            (task) => dispatch(addTask(task))
+          )}
+      )
+      .then(
+        dispatch(receiveTasks())
       )
       .catch(
         error => {
@@ -26,39 +30,48 @@ export function fetchTasks(listId) {
 }
 
 export function toggleTask(id, currentStatus) {
+          console.log("toggle???");
+           return dispatch => { () => Promise.resolved() }
   // status: new, open, hold, resolved or rejected.
-  const newStatus = currentStatus !== "resolved"
-                      ? "resolved"
-                      : "open";
-  return dispatch => {
-    return axios
-      .put(`https://redbooth.com/api/3/tasks/${id}?status=${currentStatus}&access_token=${token}`)
-      .then(
-        response => {
-          // console.log("!@#",response.data);
-          dispatch(receiveTasks([response.data]))
-        }
-      )
-      .catch(
-        error => {
-          // just swallow ...for now
-          console.error(error);
-        }
-      );
-  }
+  // const newStatus = currentStatus !== "resolved"
+  //                     ? "resolved"
+  //                     : "open";
+  // return dispatch => {
+  //   return axios
+  //     .put(`https://redbooth.com/api/3/tasks/${id}?status=${currentStatus}&access_token=${token}`)
+  //     .then(
+  //       response => {
+  //         console.log("toggle???",response.data);
+  //         // dispatch(receiveTasks([response.data]))
+  //       }
+  //     )
+  //     .catch(
+  //       error => {
+  //         // just swallow ...for now
+  //         console.error(error);
+  //       }
+  //     );
+  // }
 }
 
-export const REQUEST_TASKS = 'REQUEST_TASKS'
-const requestTasks = data => {
+const addTask = data => {
+  return {
+    type: 'ADD_TASK',
+    data
+  }
+}
+export const ADD_TASK = 'ADD_TASK'
+
+const requestTasks = () => {
   return {
     type: 'REQUEST_TASKS'
   }
 }
+export const REQUEST_TASKS = 'REQUEST_TASKS'
 
-export const RECEIVE_TASKS = 'RECEIVE_TASKS'
-const receiveTasks = data => {
+const receiveTasks = () => {
   return {
-    type: 'RECEIVE_TASKS',
-    data
+    type: 'RECEIVE_TASKS'
   }
 }
+export const RECEIVE_TASKS = 'RECEIVE_TASKS';

@@ -1,32 +1,40 @@
-import {
-  REQUEST_TASK_LISTS, RECEIVE_TASK_LISTS
-} from '../actions/task-list-actions';
+import {combineReducers} from 'redux';
 
-const taskList = (state = { items: [] }, action) => {
+const byId = (state = [], action) => {
  	switch (action.type) {
-    case REQUEST_TASK_LISTS: {
-      return Object.assign({},
-        state,
-        {
-          isFetching: true,
-        }
-      );
+    case 'ADD_TASKLIST': {
+      return [...state, action.data.id];
     }
 
-    case RECEIVE_TASK_LISTS: {
-      return Object.assign({},
-        state,
-        {
-          items: [...action.data],
-          isFetching: false,
-        }
-      );
+    default:
+      return state;
+  }
+}
+
+const all = (state = {}, action) => {
+ 	switch (action.type) {
+    case 'ADD_TASKLIST': {
+      return {
+        ...state,
+        [action.data.id]: action.data
+      }
+    }
+    default:
+      return state;
+  }
+}
+
+const isFetching = (state = false, action) => {
+ 	switch (action.type) {
+    case 'REQUEST_TASK_LISTS': {
+      return true;
+    }
+    case 'RECEIVE_TASK_LISTS': {
+      return false;
     }
 
+    default: return state;
+  }
+}
 
- 		default:
- 			return state;
- 	}
-};
-
-export default taskList;
+export default combineReducers({all, byId, isFetching});
