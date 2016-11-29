@@ -16,7 +16,7 @@ const Board = React.createClass({
           this.props.isFetching || !this.props.taskLists
             ? <div>loading...</div>
             : this.props.taskLists.map( (taskList, i) =>
-                <TaskList key={ i } props={taskList}/>
+                <TaskList key={ i } list={taskList}/>
               )
         }
       </div>

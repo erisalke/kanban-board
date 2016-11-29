@@ -67,7 +67,7 @@ const byList = (state = {}, action) => {
 const addToList = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TASK': {
-      return [...state, action.data.id]
+      return [... new Set([...state, action.data.id])]
     }
 
     default:

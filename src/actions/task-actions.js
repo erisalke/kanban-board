@@ -29,14 +29,10 @@ export function toggleTask(id, currentStatus) {
                       ? "resolved"
                       : "open";
   return dispatch => {
+    dispatch(requestTasks())
     return axios
       .put(`https://redbooth.com/api/3/tasks/${id}?status=${newStatus}&access_token=${token}`)
-      .then(
-        response => {
-          dispatch(addTask(response.data))
-          dispatch(receiveTasks())
-        }
-      )
+      .then( response => dispatch(receiveTasks([response.data])) )
       .catch(
         error => {
           // just swallow ...for now
