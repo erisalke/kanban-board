@@ -12,7 +12,7 @@ const Task = React.createClass({
               <div className="row">
                 <div className="col-xs-2">
                   <Checkbox
-                    onChange={ this.props.toggleTask() }/>
+                    onChange={ this.props.toggleTask }/>
                 </div>
                 <div className="col-xs-10">
                   { this.props.task.name }

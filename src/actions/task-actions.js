@@ -30,28 +30,26 @@ export function fetchTasks(listId) {
 }
 
 export function toggleTask(id, currentStatus) {
-          console.log("toggle???");
-           return dispatch => { () => Promise.resolved() }
   // status: new, open, hold, resolved or rejected.
-  // const newStatus = currentStatus !== "resolved"
-  //                     ? "resolved"
-  //                     : "open";
-  // return dispatch => {
-  //   return axios
-  //     .put(`https://redbooth.com/api/3/tasks/${id}?status=${currentStatus}&access_token=${token}`)
-  //     .then(
-  //       response => {
-  //         console.log("toggle???",response.data);
-  //         // dispatch(receiveTasks([response.data]))
-  //       }
-  //     )
-  //     .catch(
-  //       error => {
-  //         // just swallow ...for now
-  //         console.error(error);
-  //       }
-  //     );
-  // }
+  const newStatus = currentStatus !== "resolved"
+                      ? "resolved"
+                      : "open";
+  return dispatch => {
+    return axios
+      .put(`https://redbooth.com/api/3/tasks/${id}?status=${newStatus}&access_token=${token}`)
+      .then(
+        response => {
+          dispatch(addTask(response.data))
+          dispatch(receiveTasks())
+        }
+      )
+      .catch(
+        error => {
+          // just swallow ...for now
+          console.error(error);
+        }
+      );
+  }
 }
 
 const addTask = data => {

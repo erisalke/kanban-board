@@ -26,11 +26,11 @@ const TaskList = React.createClass({
                     const task = this.props.tasks.all[id];
                     return (
                       <Task
-                          key={i}
-                          props={task}
-                          toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
-                        />
-                      )
+                        key={i}
+                        props={task}
+                        toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
+                      />
+                    )
                   })
             }
           </div>
@@ -41,7 +41,6 @@ const TaskList = React.createClass({
     );
   }
 });
-
 
 function mapStateToProps(state, ownProps) {
   return {
