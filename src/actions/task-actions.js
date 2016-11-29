@@ -12,13 +12,7 @@ export function fetchTasks(listId) {
     return axios
       .get(url)
       .then(
-        response => {
-          response.data.forEach(
-            (task) => dispatch(addTask(task))
-          )}
-      )
-      .then(
-        dispatch(receiveTasks())
+        response => dispatch(receiveTasks(response.data))
       )
       .catch(
         error => {
@@ -52,14 +46,6 @@ export function toggleTask(id, currentStatus) {
   }
 }
 
-const addTask = data => {
-  return {
-    type: 'ADD_TASK',
-    data
-  }
-}
-export const ADD_TASK = 'ADD_TASK'
-
 const requestTasks = () => {
   return {
     type: 'REQUEST_TASKS'
@@ -67,9 +53,10 @@ const requestTasks = () => {
 }
 export const REQUEST_TASKS = 'REQUEST_TASKS'
 
-const receiveTasks = () => {
+const receiveTasks = (data) => {
   return {
-    type: 'RECEIVE_TASKS'
+    type: 'RECEIVE_TASKS',
+    data
   }
 }
 export const RECEIVE_TASKS = 'RECEIVE_TASKS';

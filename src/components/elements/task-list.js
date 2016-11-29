@@ -15,22 +15,21 @@ const TaskList = React.createClass({
         <div className="panel panel-default">
 
           <div className="panel-heading">
-            <span>{this.props.list.name}</span>
+            <span>{ this.props.list.name }</span>
           </div>
 
           <div className="panel-body">
             {
-              this.props.isFetching || !this.props.tasks
+              (this.props.isFetching || !this.props.tasks)
                 ? <div>loading...</div>
-                : this.props.tasks.byId.map( (id, i) => {
-                    const task = this.props.tasks.all[id];
-                    return (
-                      <Task
-                        key={i}
-                        props={task}
-                        toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
-                      />
-                    )
+                : this.props.tasks.map( (task, i) => {
+                  return (
+                    <Task
+                      key={i}
+                      props={task}
+                      toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
+                    />
+                  )
                   })
             }
           </div>
@@ -42,12 +41,26 @@ const TaskList = React.createClass({
   }
 });
 
+// this.props.tasks.allIds.map( (id, i) => {
+//     const task = this.props.tasks.byId[id];
+//     return (
+//       <Task
+//         key={i}
+//         props={task}
+//         toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
+//       />
+//     )
+//   })
+
 function mapStateToProps(state, ownProps) {
-  return {
-    list: state.taskLists.all[ownProps.props],
-    tasks: state.tasks,//[ownProps.props.id],
+
+  const result = {
+    list: ownProps.props,
+    tasks: [],//state.tasks,//.allIds.map(id => state.tasks.byId[id]),
     isFetching: state.tasks.isFetching,
 	}
+  console.log("STATE", result);
+  return result
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

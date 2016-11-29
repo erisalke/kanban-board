@@ -1,23 +1,12 @@
 import {combineReducers} from 'redux';
 
-const listDependency = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TASK': {
-      return [...state, action.data.id]
-    }
 
-    default: return state;
-  }
-}
-
-const byList = (state = {}, action) => {
-  switch (action.type) {
-    case 'ADD_TASK': {
-      return {
-        ...state,
-        [action.data.task_list_id]:
-          listDependency(state[action.data.task_list_id], action),
-      }
+const byId = (state = {}, action) => {
+ 	switch (action.type) {
+    case 'RECEIVE_TASKS': {
+      return action.data.reduce((result, task) =>
+        Object.assign(result, { [task.id]: task }), {}
+      )
     }
 
     default:
@@ -25,24 +14,10 @@ const byList = (state = {}, action) => {
   }
 }
 
-const byId = (state = [], action) => {
+const allIds = (state = [], action) => {
  	switch (action.type) {
-    case 'ADD_TASK': {
-      return [...state, action.data.id];
-    }
-
-    default:
-      return state;
-  }
-}
-
-const all = (state = {}, action) => {
- 	switch (action.type) {
-    case 'ADD_TASK': {
-      return {
-        ...state,
-        [action.data.id]: action.data
-      }
+    case 'RECEIVE_TASKS': {
+      return action.data.map(task => task.id)
     }
     default:
       return state;
@@ -62,43 +37,4 @@ const isFetching = (state = false, action) => {
   }
 }
 
-export default combineReducers({all, byId, byList, isFetching});
-
-//
-// const task = (state = { items: {} }, action) => {
-//  	switch (action.type) {
-//     case REQUEST_TASKS: {
-//       return Object.assign(
-//         {},
-//         state,
-//         {
-//           isFetching: true,
-//         }
-//       );
-//     }
-//
-//     case RECEIVE_TASKS: {
-//       const newItems =
-//         action.data.reduce( (res, task) => {
-//           if (!res.hasOwnProperty(task.task_list_id)){
-//             res[task.task_list_id] = [];
-//           }
-//           res[task.task_list_id]= [task, ...res[task.task_list_id]]
-//           return res;
-//         }, state.items)
-//
-//       return Object.assign({},
-//         state,
-//         {
-//           items: newItems,
-//           isFetching: false,
-//         }
-//       );
-//     }
-//
-//  		default:
-//  			return state;
-//  	}
-// };
-//
-// export default task;
+export default combineReducers({allIds, byId,  isFetching});

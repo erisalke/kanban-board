@@ -9,13 +9,7 @@ export function fetchTaskLists() {
     return axios
       .get(`https://redbooth.com/api/3/task_lists?order=id&archived=false&access_token=${token}`)
       .then(
-        response => {
-          response.data.forEach(
-            (tasklist) => dispatch(addTasklist(tasklist))
-          )}
-      )
-      .then(
-        dispatch(receiveTaskLists())
+        response => dispatch(receiveTaskLists(response.data))
       )
       .catch(
         error => {
@@ -26,15 +20,7 @@ export function fetchTaskLists() {
   }
 }
 
-const addTasklist = data => {
-  return {
-    type: ADD_TASKLIST,
-    data
-  }
-}
-export const ADD_TASKLIST = 'ADD_TASKLIST'
-
-const requestTaskLists = data => {
+const requestTaskLists = () => {
   return {
     type: REQUEST_TASK_LISTS
   }
