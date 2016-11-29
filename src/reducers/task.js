@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
+import * as a from '../actions/task-actions';
 
 const task  = (state = initState(), action) => {
   switch (action.type) {
-    case 'RECEIVE_TASKS': {
+    case a.RECEIVE_TASKS: {
       let result = Object.assign({}, state);
       action.data.forEach(data => {
         result.allIds = allIds(result.allIds, { type: "ADD_TASK", data })
@@ -13,6 +14,13 @@ const task  = (state = initState(), action) => {
       return result
     }
 
+    case a.REQUEST_TASKS: {
+      return Object.assign(
+        {},
+        state,
+        { isFetching: isFetching(undefined, action) }
+      )
+    }
     default:
       return state;
   }
@@ -41,10 +49,10 @@ const byId = (state = {}, action) => {
 
 const isFetching = (state = false, action) => {
  	switch (action.type) {
-    case 'REQUEST_TASKS': {
+    case a.REQUEST_TASKS: {
       return true;
     }
-    case 'RECEIVE_TASKS': {
+    case a.RECEIVE_TASKS: {
       return false;
     }
 

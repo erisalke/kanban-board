@@ -1,15 +1,24 @@
 import {combineReducers} from 'redux';
+import * as a from '../actions/task-list-actions';
 
 const taskList = (state = initState(), action) => {
   switch (action.type) {
-    case 'RECEIVE_TASK_LISTS': {
+    case a.RECEIVE_TASK_LISTS: {
       let result = Object.assign({}, state);
       action.data.forEach(data => {
         result.allIds = allIds(result.allIds, { type: "ADD_TASK_LIST", data })
         result.byId = byId(result.byId, { type: "ADD_TASK_LIST", data })
-        result.isFetching = isFetching(result.isFetching, action)
+        result.isFetching = isFetching(undefined, action)
       })
       return result
+    }
+
+    case a.REQUEST_TASK_LISTS: {
+      return Object.assign(
+        {},
+        state,
+        { isFetching: isFetching(undefined, action) }
+      )
     }
 
     default:
@@ -40,10 +49,10 @@ const byId = (state = {}, action) => {
 
 const isFetching = (state = false, action) => {
  	switch (action.type) {
-    case 'REQUEST_TASK_LISTS': {
+    case a.REQUEST_TASK_LISTS: {
       return true;
     }
-    case 'RECEIVE_TASK_LISTS': {
+    case a.RECEIVE_TASK_LISTS: {
       return false;
     }
 
