@@ -26,9 +26,9 @@ const TaskList = React.createClass({
                     return (
                       <Task
                         key={i}
-                        props={task}
-                        toggleTask={ () => { this.props.toggleTask(task.id, task.status) }}
-                      />
+                        name={task.name}
+                        status={task.status}
+                        selectStatus={ (status) => { this.props.toggleTask(task.id, status) }} />
                     )
                   })
             }

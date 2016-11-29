@@ -1,40 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
+import SplitBtn from '../simple/split-btn';
 
-const Task = React.createClass({
-  render: function() {
-    return (
-      <div className="row">
-        <div className="col-md-12">
-          <div className="panel panel-primary">
-            <div className="panel-heading">
-              <div className="row">
-                <div className="col-xs-2">
-                  <Checkbox
-                    onChange={ this.props.toggleTask }/>
-                </div>
-                <div className="col-xs-10">
-                  { this.props.task.name }
-                </div>
+
+const Task = function(props) {
+  const isSelected = props.status === "resolved" || props.status === "rejected"
+  const newStatus = isSelected ? "open" : "resolved";
+
+  return (
+    <div className="row">
+      <div className="col-md-12">
+        <div className="panel panel-primary">
+          <div className="panel-heading">
+            <div className="row">
+              <div className="col-xs-2">
+                <Checkbox
+                  checked={isSelected}
+                  onChange={ () => props.selectStatus(newStatus) }/>
+              </div>
+              <div className="col-xs-10">
+                { props.name }
               </div>
             </div>
-            <a href="#">
-              <div className="panel-footer">
-                status: {this.props.task.status}
-              </div>
-            </a>
           </div>
+
+          <div className="panel-footer">
+            <SplitBtn
+              title={props.status}
+              callback={props.selectStatus}
+              options={["new", "open", "hold", "resolved", "rejected"]}/>
+          </div>
+
         </div>
       </div>
-    );
-  }
-});
-
-function mapStateToProps(state, ownProps) {
-  return {
-    task: ownProps.props,
-	}
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(Task);
+export default Task;
