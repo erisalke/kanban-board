@@ -1,11 +1,15 @@
 import {combineReducers} from 'redux';
 
-const byId = (state = {}, action) => {
- 	switch (action.type) {
+const taskList = (state = initState(), action) => {
+  switch (action.type) {
     case 'RECEIVE_TASK_LISTS': {
-      return action.data.reduce((result, taskList) =>
-        Object.assign(result, { [taskList.id]: taskList }), {}
-      )
+      let result = Object.assign({}, state);
+      action.data.forEach(data => {
+        result.allIds = allIds(result.allIds, { type: "ADD_TASK_LIST", data })
+        result.byId = byId(result.byId, { type: "ADD_TASK_LIST", data })
+        result.isFetching = isFetching(result.isFetching, action)
+      })
+      return result
     }
 
     default:
@@ -15,16 +19,23 @@ const byId = (state = {}, action) => {
 
 const allIds = (state = [], action) => {
  	switch (action.type) {
-    case 'RECEIVE_TASK_LISTS': {
-      return action.data.map(taskList => taskList.id)
+    case 'ADD_TASK_LIST': {
+      return [...new Set([...state, action.data.id])]
     }
     default:
       return state;
   }
 }
 
-const getAllTaskList = (state) => {
-  state.allIds.map(id => state.byId[id])
+const byId = (state = {}, action) => {
+ 	switch (action.type) {
+    case 'ADD_TASK_LIST': {
+      return {...state, [action.data.id]: action.data}
+    }
+
+    default:
+      return state;
+  }
 }
 
 const isFetching = (state = false, action) => {
@@ -40,4 +51,12 @@ const isFetching = (state = false, action) => {
   }
 }
 
-export default combineReducers({allIds, byId, isFetching});
+const initState = () => {
+  let result = {};
+  result.allIds = allIds(undefined, {type:'any'});
+  result.byId = byId(undefined, {type:'any'});
+  result.isFetching = isFetching(undefined, {type:'any'});
+  return result;
+}
+
+export default taskList;
