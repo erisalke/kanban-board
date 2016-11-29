@@ -1,5 +1,37 @@
 import {combineReducers} from 'redux';
 
+const fromList = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_TASK': {
+      console.log("SHOOWME",action, state);
+      return [action.data.id, ...state]
+    }
+
+    default:
+      return state;
+  }
+
+}
+
+const byList = (state = {}, action) => {
+ 	switch (action.type) {
+    case 'RECEIVE_TASKS': {
+      return action.data.reduce((result, task) => {
+          return Object.assign(
+            result,
+            {
+              [task.task_list_id]: fromList(result[task.task_list_id], {type:"ADD_TASK", data:task})
+            }
+          ), state
+        }
+      )
+    }
+
+    default:
+      return state;
+  }
+}
+
 
 const byId = (state = {}, action) => {
  	switch (action.type) {
@@ -37,4 +69,4 @@ const isFetching = (state = false, action) => {
   }
 }
 
-export default combineReducers({allIds, byId,  isFetching});
+export default combineReducers({allIds, byId, byList, isFetching});
