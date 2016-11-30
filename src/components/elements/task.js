@@ -12,23 +12,27 @@ const Task = function(props) {
     <div className="row">
       <div className="col-md-12">
         <div className="panel panel-primary">
+
           <div className="panel-heading">
             <div className="row">
-              <div className="col-xs-2">
+
+              <div className="col-xs-1">
                 <Checkbox
                   checked={isSelected}
-                  onChange={ () => props.selectStatus(newStatus) }/>
+                  onChange={ () => props.changeStatus(newStatus) }/>
               </div>
+
               <div className="col-xs-10">
                 { props.name }
               </div>
+
             </div>
           </div>
 
           <div className="panel-footer">
             <SplitBtn
               title={props.status}
-              callback={props.selectStatus}
+              callback={props.changeStatus}
               options={["new", "open", "hold", "resolved", "rejected"]}/>
           </div>
 

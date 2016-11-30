@@ -24,10 +24,9 @@ export function fetchTasks(listId) {
   };
 }
 
-export function toggleTask(id, status) {
+export function changeStatus(id, status) {
   // status: new, open, hold, resolved or rejected.
   return dispatch => {
-    dispatch(requestTasks());
     return axios
       .put(`https://redbooth.com/api/3/tasks/${id}?status=${status}&access_token=${token}`)
       .then( response => dispatch(receiveTasks([response.data])) )

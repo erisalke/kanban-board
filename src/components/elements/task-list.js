@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Task from './task';
-import { fetchTasks, toggleTask } from '../../actions/task-actions';
+import { fetchTasks, changeStatus } from '../../actions/task-actions';
+import NewTask from './new-task';
 
 
 const TaskList = React.createClass({
@@ -19,6 +20,7 @@ const TaskList = React.createClass({
           </div>
 
           <div className="panel-body">
+            <NewTask />
             {
               (this.props.isFetching || !this.props.tasks)
                 ? <div>loading...</div>
@@ -28,7 +30,7 @@ const TaskList = React.createClass({
                         key={i}
                         name={task.name}
                         status={task.status}
-                        selectStatus={ (status) => { this.props.toggleTask(task.id, status); }} />
+                        changeStatus={ (status) => { this.props.changeStatus(task.id, status); }} />
                     );
                   })
             }
@@ -57,8 +59,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     fetchTasks : (listId) => {
       dispatch(fetchTasks(listId));
     },
-    toggleTask : (id, status) => {
-      dispatch(toggleTask(id, status));
+    changeStatus : (id, status) => {
+      dispatch(changeStatus(id, status));
     }
   };
 }
