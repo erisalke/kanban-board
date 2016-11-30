@@ -6,7 +6,7 @@ import { fetchTaskLists } from '../../actions/task-list-actions';
 
 const Board = React.createClass({
   componentDidMount: function() {
-    this.props.fetchTaskLists()
+    this.props.fetchTaskLists();
   },
 
   render: function() {
@@ -27,16 +27,16 @@ const Board = React.createClass({
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     fetchTaskLists : () => {
-      dispatch(fetchTaskLists())
+      dispatch(fetchTaskLists());
     },
-  }
+  };
 }
 
 function mapStateToProps(state, ownProps) {
   return {
     taskLists: state.taskLists.allIds.map(id => state.taskLists.byId[id]),
     isFetching: state.taskLists.isFetching,
-	}
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);

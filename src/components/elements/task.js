@@ -5,7 +5,7 @@ import SplitBtn from '../simple/split-btn';
 
 
 const Task = function(props) {
-  const isSelected = props.status === "resolved" || props.status === "rejected"
+  const isSelected = props.status === "resolved" || props.status === "rejected";
   const newStatus = isSelected ? "open" : "resolved";
 
   return (
@@ -36,6 +36,6 @@ const Task = function(props) {
       </div>
     </div>
   );
-}
+};
 
 export default Task;

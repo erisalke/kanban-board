@@ -8,7 +8,7 @@ const SplitBtn = (props) => {
       id={v4()}
       bsStyle="default"
       title={props.title}
-      onSelect={(eventKey) => { props.callback(eventKey) }}>
+      onSelect={ eventKey => props.callback(eventKey) }>
         {
           props.options.map(opt =>
             <MenuItem id={opt} eventKey={opt} key={v4()}>{opt}</MenuItem>
@@ -17,6 +17,6 @@ const SplitBtn = (props) => {
 
     </SplitButton>
   );
-}
+};
 
 export default SplitBtn;

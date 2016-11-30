@@ -30,12 +30,12 @@ const Home = React.createClass({
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     fetchTasks : () => {
-			dispatch(fetchTasks())
+			dispatch(fetchTasks());
 		},
     fetchTaskLists : () => {
-			dispatch(fetchTaskLists())
+			dispatch(fetchTaskLists());
 		},
-	}
+	};
 }
 
 export default connect(null, mapDispatchToProps)(Home);

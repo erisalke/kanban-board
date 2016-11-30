@@ -6,7 +6,7 @@ import { fetchTasks, toggleTask } from '../../actions/task-actions';
 
 const TaskList = React.createClass({
   componentDidMount: function() {
-    this.props.fetchTasks(this.props.list.id)
+    this.props.fetchTasks(this.props.list.id);
   },
 
   render: function() {
@@ -28,8 +28,8 @@ const TaskList = React.createClass({
                         key={i}
                         name={task.name}
                         status={task.status}
-                        selectStatus={ (status) => { this.props.toggleTask(task.id, status) }} />
-                    )
+                        selectStatus={ (status) => { this.props.toggleTask(task.id, status); }} />
+                    );
                   })
             }
           </div>
@@ -42,25 +42,25 @@ const TaskList = React.createClass({
 });
 
 function mapStateToProps(state, ownProps) {
-  const taskIds = state.tasks.byList[ownProps.list.id] || []
+  const taskIds = state.tasks.byList[ownProps.list.id] || [];
   const result = {
     list: ownProps.list,
     tasks: taskIds.map(id => state.tasks.byId[id]),
     isFetching: state.tasks.isFetching,
-	}
+	};
 
-  return result
+  return result;
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     fetchTasks : (listId) => {
-      dispatch(fetchTasks(listId))
+      dispatch(fetchTasks(listId));
     },
     toggleTask : (id, status) => {
-      dispatch(toggleTask(id, status))
+      dispatch(toggleTask(id, status));
     }
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
