@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import reducer from '../../src/reducers/task-list';
-import * as actions from '../../src/actions/task-list-actions';
+import reducer from '../../src/reducers/taskList';
+import * as actions from '../../src/actions/taskListActions';
 
-describe('task-list reducer >', () => {
+describe('taskList reducer >', () => {
 
 	it('returns default', () => {
 		const initialState = undefined;
@@ -18,7 +18,7 @@ describe('task-list reducer >', () => {
     expect(nextState).to.deep.equal(expected);
   });
 
-	it('adds task-list to store', () => {
+	it('adds taskList to store', () => {
 		const initialState = undefined;
 		const expected = {
 			byId: {

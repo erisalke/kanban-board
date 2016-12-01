@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Task from './task';
-import { fetchTasks, changeStatus, createTask } from '../../actions/task-actions';
-import NewTask from './new-task';
+import { fetchTasks, changeStatus, createTask } from '../../actions/taskActions';
+import NewTask from './newTask';
 
 
 const TaskList = React.createClass({

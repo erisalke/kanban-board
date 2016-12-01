@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TaskList from './task-list';
-import { fetchTaskLists, createTaskList } from '../../actions/task-list-actions';
+import TaskList from './taskList';
+import { fetchTaskLists, createTaskList } from '../../actions/taskListActions';
 import NewTaskList from './newTaskList';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchTaskLists } from '../actions/task-list-actions';
-import { fetchTasks } from '../actions/task-actions';
+import { fetchTaskLists } from '../actions/taskListActions';
+import { fetchTasks } from '../actions/taskActions';
 import Board from './elements/board';
 
 const Home = React.createClass({

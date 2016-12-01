@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import * as a from '../actions/task-actions';
+import * as a from '../actions/taskActions';
 
 const task  = (state = initState(), action) => {
   switch (action.type) {
@@ -9,8 +9,9 @@ const task  = (state = initState(), action) => {
         result.allIds = allIds(result.allIds, { type: "ADD_TASK", data });
         result.byId = byId(result.byId, { type: "ADD_TASK", data });
         result.byList = byList(result.byList, { type: "ADD_TASK", data });
-        result.isFetching = isFetching(result.isFetching, action);
       });
+      result.isFetching = isFetching(result.isFetching, action);
+      
       return result;
     }
 
