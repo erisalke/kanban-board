@@ -7,19 +7,16 @@ import Board from './elements/board';
 const Home = React.createClass({
   render: function() {
     return (
-      <div className="home-page">
+      <div className="fluid-container">
 
-        <h1>hello world</h1>
-
-        <div>
-          Hey hello
-        </div>
+        <h1>Kanban Board</h1>
 
         <div>
           <button onClick={ this.props.fetchTaskLists } >Get all lists</button>
           <button onClick={ this.props.fetchTasks } >Get all tasks</button>
         </div>
 
+        <br/>
         <Board />
 
       </div>

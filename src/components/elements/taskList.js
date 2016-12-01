@@ -12,9 +12,9 @@ const TaskList = React.createClass({
 
   render: function() {
     return (
-      <div className="col-md-3">
+      <div className="my-box">
+      
         <div className="panel panel-default">
-
           <div className="panel-heading">
             <span>{ this.props.list.name }</span>
           </div>

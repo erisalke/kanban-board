@@ -12,7 +12,8 @@ const Board = React.createClass({
 
   render: function() {
     return (
-      <div className="row">
+      <div className="scrolls">
+
         {
           this.props.isFetching || !this.props.taskLists
             ? <div>loading...</div>
@@ -21,8 +22,8 @@ const Board = React.createClass({
               )
         }
 
-        <NewTaskList onClick={ this.props.createTaskList
-        } />
+        <NewTaskList onClick={ this.props.createTaskList  } />
+        
       </div>
     );
   }

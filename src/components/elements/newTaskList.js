@@ -6,7 +6,7 @@ import InputForm from '../simple/inputForm';
 
 const NewTaskList = function(props) {
   return (
-    <div className="row">
+    <div className="my-box">
       <div className="col-md-12">
         <div className="panel panel-info">
           <div className="panel-heading">
