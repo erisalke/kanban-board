@@ -9,12 +9,11 @@ export default function (props) {
 			<input ref={text => {
 				input = text;
 			}} />
-
+			{' '}
 			<button
         type="button"
         className="btn btn-default"
         onClick={() => {
-					console.log(input.value);
 					props.onClick(input.value)
 					input.value = ''
 				}}>

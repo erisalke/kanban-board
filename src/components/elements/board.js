@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TaskList from './task-list';
-import { fetchTaskLists } from '../../actions/task-list-actions';
+import { fetchTaskLists, createTaskList } from '../../actions/task-list-actions';
+import NewTaskList from './newTaskList';
 
 
 const Board = React.createClass({
@@ -19,6 +20,9 @@ const Board = React.createClass({
                 <TaskList key={ i } list={taskList}/>
               )
         }
+
+        <NewTaskList onClick={ this.props.createTaskList
+        } />
       </div>
     );
   }
@@ -29,6 +33,9 @@ function mapDispatchToProps(dispatch, ownProps) {
     fetchTaskLists : () => {
       dispatch(fetchTaskLists());
     },
+    createTaskList : (name) => {
+      dispatch(createTaskList(name));
+    }
   };
 }
 

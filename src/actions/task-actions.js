@@ -7,7 +7,6 @@ export function createTask(listId, name) {
     return axios
       .post(`https://redbooth.com/api/3/tasks?task_list_id=${listId}&name=${name}&access_token=${token}`)
       .then( response => {
-        console.log(response);
         dispatch(receiveTasks([response.data])) })
       .catch(
         error => {

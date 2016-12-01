@@ -4,7 +4,7 @@ import { Checkbox, Form, FormGroup, FormControl, Button} from 'react-bootstrap';
 import InputForm from '../simple/inputForm';
 
 
-const NewTask = function(props) {
+const NewTaskList = function(props) {
   return (
     <div className="row">
       <div className="col-md-12">
@@ -18,8 +18,8 @@ const NewTask = function(props) {
 
               <div className="col-xs-10">
                 <InputForm
-                  buttonName="new Task"
-                  onClick= { props.createTask } />
+                  buttonName="new List"
+                  onClick= { props.onClick } />
               </div>
 
             </div>
@@ -30,4 +30,4 @@ const NewTask = function(props) {
   );
 };
 
-export default NewTask;
+export default NewTaskList;

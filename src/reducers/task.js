@@ -29,7 +29,7 @@ const task  = (state = initState(), action) => {
 const allIds = (state = [], action) => {
  	switch (action.type) {
     case 'ADD_TASK': {
-      return [...new Set([...state, action.data.id])];
+      return [...new Set([action.data.id, ...state])];
     }
     default:
       return state;
@@ -75,7 +75,7 @@ const byList = (state = {}, action) => {
 const addToList = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TASK': {
-      return [... new Set([...state, action.data.id])];
+      return [... new Set([action.data.id, ...state])];
     }
 
     default:
