@@ -1,18 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Checkbox, Form, FormGroup, FormControl, Button} from 'react-bootstrap';
+import InputForm from '../simple/inputForm';
 
-const FormInstance = (props) => {
-  return (
-    <Form inline>
-      <FormControl type="text" placeholder="create new task" />
-      {' '}
-      <Button type="submit">
-        Create
-      </Button>
-    </Form>
-  )
-}
 
 const NewTask = function(props) {
   return (
@@ -25,8 +15,11 @@ const NewTask = function(props) {
               <div className="col-xs-2">
                 <Checkbox />
               </div>
+
               <div className="col-xs-10">
-                <FormInstance />
+                <InputForm
+                  buttonName="Ok!"
+                  onClick= { props.createTask } />
               </div>
 
             </div>
@@ -36,8 +29,5 @@ const NewTask = function(props) {
     </div>
   );
 };
-
-
-
 
 export default NewTask;

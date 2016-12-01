@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Checkbox } from 'react-bootstrap';
-import SplitBtn from '../simple/split-btn';
+import SplitBtn from '../simple/splitButton';
 
 
 const Task = function(props) {

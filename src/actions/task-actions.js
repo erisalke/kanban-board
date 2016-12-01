@@ -2,6 +2,22 @@ import React from 'react';
 import axios from 'axios';
 import token from '../../config.js';
 
+export function createTask(listId, name) {
+  return dispatch => {
+    return axios
+      .post(`https://redbooth.com/api/3/tasks?task_list_id=${listId}&name=${name}&access_token=${token}`)
+      .then( response => {
+        console.log(response);
+        dispatch(receiveTasks([response.data])) })
+      .catch(
+        error => {
+          // just swallow ...for now
+          console.error(error);
+        }
+      );
+  };
+}
+
 export function fetchTasks(listId) {
   return dispatch => {
     dispatch(requestTasks());
