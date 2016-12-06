@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import token from '../../config.js';
+import token from '../../token.js';
 
 export function createTaskList(name) {
   const projectId = 1663534;
