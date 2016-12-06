@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchTasks, changeStatus, createTask } from '../../actions/taskActions';
-import SplitBtn from '../simple/splitButton';
-import { Form, FormGroup, PanelGroup, Panel} from 'react-bootstrap';
+import { PanelGroup, Panel} from 'react-bootstrap';
 import InputForm from '../simple/inputForm';
+import ChangeStatusSplitButton from '../simple/changeStatusSplitButton';
 
 const Tasks = React.createClass({
   getInitialState() {
@@ -19,11 +19,13 @@ const Tasks = React.createClass({
   render() {
     return (
       <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect} accordion>
+
         <Panel header="create new task" eventKey={0} key={0}>
           <InputForm
             placeholder="type in and hit enter"
             onClick= { this.props.createTask } />
         </Panel>
+
         {
           this.props.tasks.map( (task, i) => {
             return (
@@ -37,20 +39,10 @@ const Tasks = React.createClass({
             );
           })
         }
+
       </PanelGroup>
     );
   }
 });
-
-const ChangeStatusSplitButton = (props) => {
-  return (
-      <FormGroup>
-        <SplitBtn
-          title={props.status}
-          callback={props.changeStatus}
-          options={["new", "open", "hold", "resolved", "rejected"]}/>
-      </FormGroup>
-    )
-}
 
 export default Tasks
