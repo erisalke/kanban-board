@@ -1,5 +1,8 @@
-.my-box {
-  width: 250px;
+.well {
+  margin-bottom: 5px;
+}
+.task-list {
+  width: 320px;
   box-shadow: 1px 1px 10px #999;
   margin-right: 20px;
 
@@ -27,6 +30,5 @@
 .scrolls {
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 800px;
   white-space:nowrap
 }

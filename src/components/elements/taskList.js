@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Task from './task';
 import { fetchTasks, changeStatus, createTask } from '../../actions/taskActions';
-import NewTask from './newTask';
-
+import Tasks from './tasks'
 
 const TaskList = React.createClass({
   componentDidMount: function() {
@@ -12,33 +10,23 @@ const TaskList = React.createClass({
 
   render: function() {
     return (
-      <div className="my-box">
-      
+      <div className="task-list">
+
         <div className="panel panel-default">
           <div className="panel-heading">
             <span>{ this.props.list.name }</span>
           </div>
 
           <div className="panel-body">
-            <NewTask createTask={
-              (name)=> this.props.createTask(this.props.list.id, name) } />
-
             {
               (this.props.isFetching || !this.props.tasks)
                 ? <div>loading...</div>
-                : this.props.tasks.map( (task, i) => {
-                    return (
-                      <Task
-                        key={i}
-                        name={task.name}
-                        status={task.status}
-                        changeStatus={
-                          (status) => { this.props.changeStatus(task.id, status); }
-                        } />
-                    );
-                  })
+                : <Tasks
+                    tasks={this.props.tasks}
+                    changeStatus={this.props.changeStatus}
+                    createTask={
+                      (name)=> this.props.createTask(this.props.list.id, name) } />
             }
-
           </div>
 
         </div>
@@ -47,6 +35,7 @@ const TaskList = React.createClass({
     );
   }
 });
+
 
 function mapStateToProps(state, ownProps) {
   const taskIds = state.tasks.byList[ownProps.list.id] || [];
