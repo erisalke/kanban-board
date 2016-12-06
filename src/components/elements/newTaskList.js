@@ -1,29 +1,24 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Checkbox, Form, FormGroup, FormControl, Button} from 'react-bootstrap';
 import InputForm from '../simple/inputForm';
 
-
-const NewTaskList = function(props) {
+function NewTaskList(props) {
   return (
-    <div className="my-box">
-      <div className="col-md-12">
-        <div className="panel panel-info">
-          <div className="panel-heading">
-            <div className="row">
+    <div className="task-list">
 
-              <div className="col-xs-10">
-                <InputForm
-                  buttonName="new List"
-                  onClick= { props.onClick } />
-              </div>
-
-            </div>
-          </div>
+      <div className="panel panel-default">
+        <div className="panel-heading">
+          <InputForm
+            placeholder="create new task list"
+            onClick={ props.onClick } />
         </div>
+
+        <div className="panel-body">
+          Just type above and hit enter
+        </div>
+
       </div>
     </div>
   );
-};
+}
 
-export default NewTaskList;
+export default NewTaskList

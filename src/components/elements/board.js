@@ -4,7 +4,6 @@ import TaskList from './taskList';
 import { fetchTaskLists, createTaskList } from '../../actions/taskListActions';
 import NewTaskList from './newTaskList';
 
-
 const Board = React.createClass({
   componentDidMount: function() {
     this.props.fetchTaskLists();
@@ -22,8 +21,8 @@ const Board = React.createClass({
               )
         }
 
-        <NewTaskList onClick={ this.props.createTaskList  } />
-        
+        <NewTaskList onClick={ this.props.createTaskList } />
+
       </div>
     );
   }

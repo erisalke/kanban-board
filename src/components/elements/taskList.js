@@ -31,7 +31,6 @@ const TaskList = React.createClass({
 
         </div>
       </div>
-
     );
   }
 });
@@ -39,13 +38,11 @@ const TaskList = React.createClass({
 
 function mapStateToProps(state, ownProps) {
   const taskIds = state.tasks.byList[ownProps.list.id] || [];
-  const result = {
+  return {
     list: ownProps.list,
     tasks: taskIds.map(id => state.tasks.byId[id]),
     isFetching: state.tasks.isFetching,
 	};
-
-  return result;
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
