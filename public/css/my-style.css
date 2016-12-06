@@ -9,6 +9,13 @@
   *display:inline;
   *zoom:1;
   vertical-align:top;
+  margin-bottom: 66px;
+}
+
+.justwrapit {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .wrapper {
@@ -27,5 +34,6 @@
 .scrolls {
   overflow-x: scroll;
   overflow-y: hidden;
-  white-space:nowrap
+  white-space: nowrap;
+  height: auto;
 }

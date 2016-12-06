@@ -20,21 +20,28 @@ const Tasks = React.createClass({
     return (
       <PanelGroup activeKey={this.state.activeKey} onSelect={this.handleSelect} accordion>
 
-        <Panel header="create new task" eventKey={0} key={0}>
-          <InputForm
-            placeholder="type in and hit enter"
-            onClick= { this.props.createTask } />
+        <Panel
+          header={<div className="justwrapit">create new task</div>}
+          eventKey={0}
+          key={0}>
+            <InputForm
+              placeholder="type in and hit enter"
+              onClick= { this.props.createTask } />
         </Panel>
 
         {
           this.props.tasks.map( (task, i) => {
             return (
-              <Panel header={task.name} eventKey={i+1} key={i+1}>
-                <ChangeStatusSplitButton
-                  status={task.status}
-                  changeStatus={
-                    (status) => this.props.changeStatus(task.id, status)
-                  } />
+              <Panel
+                className="gowno"
+                header={<div className="justwrapit">{task.name}</div>}
+                eventKey={i+1}
+                key={i+1}>
+                  <ChangeStatusSplitButton
+                    status={task.status}
+                    changeStatus={
+                      (status) => this.props.changeStatus(task.id, status)
+                    } />
               </Panel>
             );
           })
