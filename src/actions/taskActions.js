@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import token from '../../token.js';
 
 export function createTask(listId, name) {
   return dispatch => {
     return axios
-      .post(`https://redbooth.com/api/3/tasks?task_list_id=${listId}&name=${name}&access_token=${token}`)
+      .post(`https://redbooth.com/api/3/tasks?task_list_id=${listId}&name=${name}`)
       .then( response => {
         dispatch(receiveTasks([response.data])) })
       .catch(
@@ -21,7 +20,7 @@ export function fetchTasks(listId) {
   return dispatch => {
     dispatch(requestTasks());
 
-    let url = `https://redbooth.com/api/3/tasks?order=id&access_token=${token}`;
+    let url = `https://redbooth.com/api/3/tasks?order=id`;
     if (listId) {
       url += `&task_list_id=${listId}`;
     }
@@ -43,7 +42,7 @@ export function changeStatus(id, status) {
   // status: new, open, hold, resolved or rejected.
   return dispatch => {
     return axios
-      .put(`https://redbooth.com/api/3/tasks/${id}?status=${status}&access_token=${token}`)
+      .put(`https://redbooth.com/api/3/tasks/${id}?status=${status}`)
       .then( response => dispatch(receiveTasks([response.data])) )
       .catch(
         error => {

@@ -1,13 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import token from '../../token.js';
 
 export function createTaskList(name) {
   const projectId = 1663534;
 
   return function (dispatch) {
     return axios
-      .post(`https://redbooth.com/api/3/task_lists?archived=false&project_id=${projectId}&name=${name}&access_token=${token}`)
+      .post(`https://redbooth.com/api/3/task_lists?archived=false&project_id=${projectId}&name=${name}`)
       .then(
         response => {
           dispatch(receiveTaskLists([response.data]))}
@@ -26,7 +25,7 @@ export function fetchTaskLists() {
     dispatch(requestTaskLists());
 
     return axios
-      .get(`https://redbooth.com/api/3/task_lists?order=id&archived=false&access_token=${token}`)
+      .get(`https://redbooth.com/api/3/task_lists?order=id&archived=false`)
       .then(
         response => dispatch(receiveTaskLists(response.data))
       )
