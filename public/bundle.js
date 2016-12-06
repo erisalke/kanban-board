@@ -30493,7 +30493,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var apiToken = 'place the api token here';
+	var apiToken = 'it seems to work without the api token';
 
 	exports.default = apiToken;
 
